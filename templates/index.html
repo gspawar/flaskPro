@@ -1,0 +1,66 @@
+<html>
+    <body>
+    <div >
+        <h2>Add a User</h2>
+        <form action="/" method="POST">
+            <div >
+              <label>FullName</label>
+              <input type="text" name="fullname" id="fullname" >
+            </div>
+
+            <div >
+              <label>Age</label>
+              <input type="text" name="age" id="age">
+            </div>
+
+            <div >
+              <label>Mobile</label>
+              <input type="text" name="mobile" id="mobile">
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
+    </div>
+    <div >
+        <h2>All User</h2>
+
+                {% if allUser|length == 0 %}
+
+                <div >
+                    No User found. Add your first User now!
+                  </div>
+                    {% else %}
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>SNo</th>
+                            <th>FullName</th>
+                            <th>Age</th>
+                            <th >Mobile</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+              <tbody>
+              {% for user in allUser %}
+              <tr>
+                <th>{{loop.index}}</th>
+                <td>{{user.fullname}}</td>
+                 <td>{{user.age}}</td>
+                 <td>{{user.mobile}}</td>
+                <td>{{user.date_created}}</td>
+                <td>
+                  <a href="/update/{{user.sno}}">Update</a>
+                  <a href="/delete/{{user.sno}}">Delete</a>
+
+                </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+            </table>
+              {% endif %}
+    </div>
+    </body>
+</html>
+
